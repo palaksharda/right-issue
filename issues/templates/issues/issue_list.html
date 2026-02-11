@@ -1,0 +1,408 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply Right Issue</title>
+<!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="{% static 'images/srlogo.jpeg' %}">
+
+<style>
+body {
+    background: #f4f7fb;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+/* HEADER */
+.broker-header {
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    color: white;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+}
+
+.container {
+    width: 92%;
+    margin: auto;
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-title {
+    font-family: 'Georgia', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-left: 30px; /* space from left */
+}
+
+.logo {
+    height: 45px;
+    object-fit: contain;
+    margin-right: 30px;
+}
+
+/* SECTION TITLES */
+.section-title {
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* TABLE FOR DESKTOP */
+.issue-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.05);
+    animation: fadeIn 0.6s ease;
+    table-layout: fixed; /* equal column widths */
+}
+
+.issue-table th, .issue-table td {
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    word-wrap: break-word;
+}
+
+/* Adjust column widths: company wider */
+.issue-table th:nth-child(1),
+.issue-table td:nth-child(1) {
+    width: 40%;
+}
+
+.issue-table th:nth-child(2),
+.issue-table td:nth-child(2),
+.issue-table th:nth-child(3),
+.issue-table td:nth-child(3) {
+    width: auto;
+}
+
+.issue-table th:nth-child(4),
+.issue-table td:nth-child(4) {
+    width: auto; /* Status */
+}
+
+.issue-table th:nth-child(5),
+.issue-table td:nth-child(5) {
+    width: 120px; /* Action button */
+}
+
+.issue-table th {
+    background: #1e293b;
+    color: white;
+    font-weight: 600;
+}
+
+.issue-table tbody tr {
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.issue-table tbody tr:hover {
+    background: #f1f5f9;
+    transform: scale(1.01);
+}
+
+/* BADGES */
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.badge.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge.danger {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* APPLY BUTTON */
+.apply-btn {
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.apply-btn:hover {
+    background: #1d4ed8;
+    transform: scale(1.05);
+}
+
+/* CARDS FOR MOBILE */
+.issue-cards {
+    display: none;
+    margin-top: 10px;
+}
+
+.issue-card {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.05);
+    animation: fadeIn 0.5s ease;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.company-name {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.card-row {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #334155;
+}
+
+.page-bottom-info {
+    text-align: center;          /* center text */
+    font-size: 14px;
+    color: #334155;              /* subtle color */
+    padding: 12px 0;
+    margin-top: 20px;            /* space from content above */
+}
+
+.page-bottom-info a {
+    color: #2563eb;              /* link color */
+    text-decoration: none;
+    margin: 0 4px;
+}
+
+.page-bottom-info a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
+
+/* Mobile specific */
+@media screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+        margin: auto;
+        padding: 0;
+    }
+
+    /* Header adjustments */
+    .broker-header {
+        padding:10px 0;
+    }
+
+    .header-flex {
+        flex-direction: row;             /* horizontal */
+        justify-content: space-between;  /* title left, logo right */
+        align-items: center;
+    }
+
+    .title-wrapper {
+        order: 1;
+    }
+
+    .logo-wrapper {
+        order: 2;
+    }
+
+    .brand-title {
+        font-size: 20px;
+    }
+
+    .logo {
+        height: 20px;
+    }
+    
+    /* Cards adjustments */
+    .issue-table {
+        display: none;
+    }
+
+    .issue-cards {
+        display: block;
+    }
+
+    .issue-card {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .company-name {
+        font-size: 15px;
+    }
+
+    .card-row {
+        font-size: 13px;
+    }
+
+    .apply-btn {
+        padding: 5px 10px;
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header class="broker-header">
+    <div class="header-flex">
+        <div class="title-wrapper">
+            <h1 class="brand-title">Apply Right Issue</h1>
+        </div>
+        <div class="logo-wrapper">
+            <img src="{% static 'images/sureshrathilogo.jpeg' %}" class="logo">
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- OPEN ISSUES -->
+<h2 class="section-title">Open Issues</h2>
+
+<div class="table-responsive">
+    <table class="issue-table" id="openTable">
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Open Date</th>
+                <th>Close Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for issue in open_issues %}
+            <tr>
+                <td>{{ issue.company_name }}</td>
+                <td>{{ issue.issue_open_date }}</td>
+                <td>{{ issue.issue_close_date }}</td>
+                <td>
+                    {% if issue.days_left <= 2 %}
+                        <span class="badge danger">Closing Soon</span>
+                    {% else %}
+                        <span class="badge success">Open</span>
+                    {% endif %}
+                </td>
+                <td><button class="apply-btn" onclick="location.href='{{ issue.apply_link }}'">Apply Now</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Mobile Cards for Open -->
+<div class="issue-cards" id="openCards">
+    {% for issue in open_issues %}
+    <div class="issue-card">
+        <div class="card-top">
+            <div class="company-name">{{ issue.company_name }}</div>
+            {% if issue.days_left <= 2 %}
+                <span class="badge danger">Closing Soon</span>
+            {% else %}
+                <span class="badge success">Open</span>
+            {% endif %}
+        </div>
+        <div class="card-row">Open: {{ issue.issue_open_date }}</div>
+        <div class="card-row">Close: {{ issue.issue_close_date }}</div>
+        <button class="apply-btn" onclick="location.href='{{ issue.apply_link }}'">Apply Now</button>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- UPCOMING ISSUES -->
+<h2 class="section-title">Upcoming Issues</h2>
+
+<div class="table-responsive">
+    <table class="issue-table" id="upcomingTable">
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Open Date</th>
+                <th>Close Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for issue in upcoming_issues %}
+            <tr>
+                <td>{{ issue.company_name }}</td>
+                <td>{{ issue.issue_open_date }}</td>
+                <td>{{ issue.issue_close_date }}</td>
+                <td><span class="badge success">Upcoming</span></td>
+                <td><button class="apply-btn" onclick="location.href='{{ issue.apply_link }}'">Apply Now</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Mobile Cards for Upcoming -->
+<div class="issue-cards" id="upcomingCards">
+    {% for issue in upcoming_issues %}
+    <div class="issue-card">
+        <div class="card-top">
+            <div class="company-name">{{ issue.company_name }}</div>
+            <span class="badge success">Upcoming</span>
+        </div>
+        <div class="card-row">Open: {{ issue.issue_open_date }}</div>
+        <div class="card-row">Close: {{ issue.issue_close_date }}</div>
+        <button class="apply-btn" onclick="location.href='{{ issue.apply_link }}'">Apply Now</button>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="page-bottom-info">
+    📧 Email: <a href="mailto:info@sureshrathi.in">info@sureshrathi.in</a> | 
+    📞 Phone: <a href="tel:18001202484">1800 120 2484</a> | 
+    🌐 <a href="https://www.sureshrathi.com" target="_blank">www.sureshrathi.com</a>
+</div>
+
+</div>
+
+</body>
+</html>
