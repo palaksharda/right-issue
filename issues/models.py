@@ -30,6 +30,20 @@ class RightIssue(UUIDMixin):
         blank=True,
         null=True
     )
+
+    on_appl = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        blank=True,
+        null=True
+    )
+
+    on_call = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        blank=True,
+        null=True
+    )
     
     apply_link = models.URLField(blank=True, null=True)
 

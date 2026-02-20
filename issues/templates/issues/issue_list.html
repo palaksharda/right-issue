@@ -311,7 +311,9 @@ body {
                 <th>Open Date</th>
                 <th>Close Date</th>
                 <th>Ratio</th>
-                <th>Price Offered</th>
+                <th>Price</th>
+                <th>On Appl</th>
+                <th>On Call</th>  
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -324,6 +326,8 @@ body {
                 <td>{{ issue.issue_close_date }}</td>
                 <td>{{ issue.ratio }}</td>
                 <td>{{ issue.price_offered }}</td>
+                <td>{{ issue.on_appl|default:"-" }}</td>
+                <td>{{ issue.on_call|default:"-" }}</td>
                 <td>
                     {% if issue.days_left <= 2 %}
                         <span class="badge danger">Closing Soon</span>
@@ -354,6 +358,8 @@ body {
         <div class="card-row">Close: {{ issue.issue_close_date }}</div>
         <div class="card-row">Ratio: {{ issue.ratio }}</div>
         <div class="card-row">Price: {{ issue.price_offered }}</div>
+        <div class="card-row">On Appl: {{ issue.on_appl|default:"-" }}</div>
+        <div class="card-row">On Call: {{ issue.on_call|default:"-" }}</div>
         <button class="apply-btn" onclick="location.href='{{ issue.apply_link }}'">Apply Now</button>
     </div>
     {% endfor %}
@@ -383,6 +389,9 @@ body {
                 <td>{{ issue.issue_close_date }}</td>
                 <td>{{ issue.ratio }}</td>
                 <td>{{ issue.price_offered }}</td>
+                <td>{{ issue.on_appl|default:"-" }}</td>
+                <td>{{ issue.on_call|default:"-" }}</td>
+
                 <td><span class="badge success">Upcoming</span></td>
                 <td><button class="apply-btn" onclick="location.href='{{ issue.apply_link }}'">Apply Now</button></td>
             </tr>
@@ -403,6 +412,8 @@ body {
         <div class="card-row">Close: {{ issue.issue_close_date }}</div>
         <div class="card-row">Ratio: {{ issue.ratio }}</div>
         <div class="card-row">Price: {{ issue.price_offered }}</div>
+        <div class="card-row">On Appl: {{ issue.on_appl|default:"-" }}</div>
+        <div class="card-row">On Call: {{ issue.on_call|default:"-" }}</div>
         <button class="apply-btn" onclick="location.href='{{ issue.apply_link }}'">Apply Now</button>
     </div>
     {% endfor %}
