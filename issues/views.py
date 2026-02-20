@@ -8,7 +8,7 @@ def issue_list_view(request):
     upcoming_issues = RightIssue.objects.filter(
         issue_open_date__gt=today,
         is_published=True,
-    ).order_by("issue_open_date")
+    ).order_by("issue_close_date")
 
     open_issues = RightIssue.objects.filter(
         issue_open_date__lte=today,
