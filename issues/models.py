@@ -16,6 +16,21 @@ class RightIssue(UUIDMixin):
     issue_open_date = models.DateField()
     issue_close_date = models.DateField()
 
+    ratio = models.CharField(
+        max_length=15,
+        help_text="Example: 1:2, 3:5 etc.",
+        blank=True,
+        null=True
+    )
+
+    price_offered = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        help_text="Price per share offered in rights issue",
+        blank=True,
+        null=True
+    )
+    
     apply_link = models.URLField(blank=True, null=True)
 
     is_published = models.BooleanField(default=True)

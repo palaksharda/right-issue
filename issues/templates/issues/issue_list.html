@@ -46,7 +46,7 @@ body {
 }
 
 .logo {
-    height: 45px;
+    height: 55px;
     object-fit: contain;
     margin-right: 30px;
 }
@@ -310,6 +310,8 @@ body {
                 <th>Company Name</th>
                 <th>Open Date</th>
                 <th>Close Date</th>
+                <th>Ratio</th>
+                <th>Price Offered</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -320,6 +322,8 @@ body {
                 <td>{{ issue.company_name }}</td>
                 <td>{{ issue.issue_open_date }}</td>
                 <td>{{ issue.issue_close_date }}</td>
+                <td>{{ issue.ratio }}</td>
+                <td>{{ issue.price_offered }}</td>
                 <td>
                     {% if issue.days_left <= 2 %}
                         <span class="badge danger">Closing Soon</span>
@@ -348,6 +352,8 @@ body {
         </div>
         <div class="card-row">Open: {{ issue.issue_open_date }}</div>
         <div class="card-row">Close: {{ issue.issue_close_date }}</div>
+        <div class="card-row">Ratio: {{ issue.ratio }}</div>
+        <div class="card-row">Price: {{ issue.price_offered }}</div>
         <button class="apply-btn" onclick="location.href='{{ issue.apply_link }}'">Apply Now</button>
     </div>
     {% endfor %}
@@ -363,6 +369,8 @@ body {
                 <th>Company Name</th>
                 <th>Open Date</th>
                 <th>Close Date</th>
+                <th>Ratio</th>
+                <th>Price Offered</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -373,6 +381,8 @@ body {
                 <td>{{ issue.company_name }}</td>
                 <td>{{ issue.issue_open_date }}</td>
                 <td>{{ issue.issue_close_date }}</td>
+                <td>{{ issue.ratio }}</td>
+                <td>{{ issue.price_offered }}</td>
                 <td><span class="badge success">Upcoming</span></td>
                 <td><button class="apply-btn" onclick="location.href='{{ issue.apply_link }}'">Apply Now</button></td>
             </tr>
@@ -391,6 +401,8 @@ body {
         </div>
         <div class="card-row">Open: {{ issue.issue_open_date }}</div>
         <div class="card-row">Close: {{ issue.issue_close_date }}</div>
+        <div class="card-row">Ratio: {{ issue.ratio }}</div>
+        <div class="card-row">Price: {{ issue.price_offered }}</div>
         <button class="apply-btn" onclick="location.href='{{ issue.apply_link }}'">Apply Now</button>
     </div>
     {% endfor %}
